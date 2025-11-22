@@ -8,14 +8,16 @@ import cors from 'cors'
 
 const app = express()
 
-app.get('/', (req, res) => {
-  console.log('Travel Agent')
-})
+// * Routers 
+import authController from './controllers/auth.js'
 
 // Middleware
 app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
+
+// * Routes
+app.use('/auth', authController)
 
 // Connections
 const connect = async (req, res) => {
