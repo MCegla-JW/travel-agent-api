@@ -9,7 +9,8 @@ const activitySchema = new mongoose.Schema({
 const tripSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User' /* required: true */,
+    ref: 'User',
+    required: true,
   },
   title: { type: String, required: true },
   description: { type: String },
