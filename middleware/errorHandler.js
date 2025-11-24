@@ -1,5 +1,12 @@
 const logError = (msg) => {
-  console.error('🚨🚨🚨 Error:', msg.name, '(Code:', msg.code, ')', msg.timestamp)
+  console.error(
+    '🚨🚨🚨 Error:',
+    msg.name,
+    '(Code:',
+    msg.code,
+    ')',
+    msg.timestamp,
+  )
   console.error('Description:', msg.description)
   console.error('Trigger:', msg.request, '=>', msg.status)
   console.error('Repair:', msg.repair)
@@ -12,8 +19,7 @@ const errorHandler = (error, req, res, next) => {
     name: error.name || 'Generic internal server error',
     description: error.description || 'Something went wrong',
     request: `${req.method} ${req.url}`,
-    repair: error.repair ||'Unknown',
-    error: null,
+    repair: error.repair || 'Unknown',
     timestamp: new Date(Date.now()).toISOString(),
   }
 
@@ -47,7 +53,9 @@ const errorHandler = (error, req, res, next) => {
       'Ensure that all values meet the resource schema definition.'
   }
 
-  logError(message)
+  // Nice error formatting for production use, not enough detail during development
+  // logError(message)
+  console.error(error)
 
   res.status(message.status).json(message)
 }
