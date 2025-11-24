@@ -6,6 +6,7 @@ import 'dotenv/config'
 import morgan from 'morgan'
 import cors from 'cors'
 import errorHandler from './middleware/errorHandler.js'
+import isSignedIn from './middleware/isSignedIn.js'
 
 const app = express()
 
