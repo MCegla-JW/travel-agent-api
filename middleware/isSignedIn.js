@@ -7,6 +7,7 @@ const isSignedIn = async (req, res, next) => {
         const authHeader = req.headers.authorization
         if (!authHeader) throw new Unauthorized('No auth header found')
         const token = authHeader.split(' ')[1]
+        if (!token) throw new Unauthorized('Payload missing')
         const decodedPayload = jwt.verify(token, process.env.TOKEN_SECRET)
         const user = await User.findById(decodedPayload.user._id)
         if (!user) throw new NotFound('User not found in database')
@@ -14,7 +15,11 @@ const isSignedIn = async (req, res, next) => {
         next()
     } catch (error) {
         console.log(error.message)
-        next(new Unauthorized('Unauthorized'))
+        if (error.name === 'JsonWebTokenError')
+            return next(new Unauthorized('Invalid token'))
+        if (error.name === 'TokenExpiredError')
+            return next(new Unauthorized('Token expired'))
+        next(error)
     }
 }
 
