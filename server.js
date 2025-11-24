@@ -11,6 +11,7 @@ const app = express()
 
 // * Routers
 import authController from './controllers/auth.js'
+import tripController from './controllers/trip.js'
 
 // Middleware
 app.use(express.json())
@@ -19,6 +20,7 @@ app.use(morgan('dev'))
 
 // * Routes
 app.use('/auth', authController)
+app.use('/trips', tripController)
 
 // * Handle all errors thrown in the routes
 app.use(errorHandler)
