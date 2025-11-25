@@ -13,7 +13,6 @@ const logError = (msg) => {
 }
 
 const errorHandler = (error, req, res, next) => {
-  const frontendMessage = error.payload || { message: error.message || error.description}
   const backendDetails = {
     status: error.status || 500,
     code: error.code || 0,
@@ -54,12 +53,24 @@ const errorHandler = (error, req, res, next) => {
       'Ensure that all values meet the resource schema definition.'
   }
 
+  let frontendMessage = {}
+
+  if (error.payload) {
+    if (typeof error.payload === 'object' && !error.payload.message) {
+      frontendMessage = error.payload
+    } else if (error.payload.message) {
+      frontendMessage = { message: error.payload.message }
+    } else if (typeof error.payload === 'string') {
+      frontendMessage = { message: error.payload}
+    }
+  } else {
+    frontendMessage = { message: error.message || 'An error occured'}
+  }
   // Nice error formatting for production use, not enough detail during development
   // logError(message)
   console.error(backendDetails)
-  return res.status(error.status || 500).json({
-    frontend: frontendMessage,
-    backend: backendDetails
+  return res.status(backendDetails.status).json({
+    error: frontendMessage
   })
 
 }
