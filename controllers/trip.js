@@ -10,7 +10,7 @@ const router = express.Router()
 // * Index
 router.get('/', isSignedIn, async (req, res, next) => {
   try {
-    const trips = await Trip.find() // Decided to not populate owner but keep the user ID
+    const trips = await Trip.find({ owner: req.user._id })
     res.status(200).json(trips)
   } catch (error) {
     next(error)
@@ -32,8 +32,9 @@ router.post('/', isSignedIn, async (req, res, next) => {
 router.get('/:tripId', isSignedIn, async (req, res, next) => {
   try {
     const { tripId } = req.params
-    const trip = await Trip.findById(tripId) // Decided to not populate owner but keep the user ID
+    const trip = await Trip.findById(tripId)
     if (!trip) throw new NotFound()
+    if (!trip.owner.equals(req.user._id)) throw new Forbidden()
     res.status(200).json(trip)
   } catch (error) {
     next(error)
@@ -78,6 +79,7 @@ router.get('/:tripId/activities/', isSignedIn, async (req, res, next) => {
     const { tripId } = req.params
     const trip = await Trip.findById(tripId)
     if (!trip) throw new NotFound()
+    if (!trip.owner.equals(req.user._id)) throw new Forbidden()
     res.status(200).json(trip.activities)
   } catch (error) {
     next(error)
@@ -90,6 +92,7 @@ router.post('/:tripId/activities/', isSignedIn, async (req, res, next) => {
     const { tripId } = req.params
     const trip = await Trip.findById(tripId)
     if (!trip) throw new NotFound()
+    if (!trip.owner.equals(req.user._id)) throw new Forbidden()
     req.body.owner = req.user._id
     trip.activities.push(req.body)
     await trip.save()
@@ -105,6 +108,7 @@ router.get('/:tripId/activities/:actId', isSignedIn, async (req, res, next) => {
     const { tripId, actId } = req.params
     const trip = await Trip.findById(tripId)
     if (!trip) throw new NotFound()
+    if (!trip.owner.equals(req.user._id)) throw new Forbidden()
     const activity = trip.activities.id(actId)
     if (!activity) throw new NotFound()
     res.status(200).json(activity)
@@ -132,7 +136,8 @@ router.put('/:tripId/activities/:actId', isSignedIn, async (req, res, next) => {
 
 // * Delete
 router.delete(
-  '/:tripId/activities/:actId', isSignedIn,
+  '/:tripId/activities/:actId',
+  isSignedIn,
   async (req, res, next) => {
     try {
       const { tripId, actId } = req.params
