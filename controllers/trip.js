@@ -155,6 +155,54 @@ router.delete(
   },
 )
 
+// * Propose
+router.get(
+  '/:tripId/activities/propose',
+  isSignedIn,
+  async (req, res, next) => {
+    try {
+      const { tripId } = req.params
+      const trip = await Trip.findById(tripId)
+      if (!trip) throw new NotFound()
+      if (!trip.owner.equals(req.user._id)) throw new Forbidden()
+
+      // here comes the OpenAI integration
+
+      // activity.set(req.body)
+      // await trip.save()
+      // res.status(200).json(activity)
+      res.status(405).json({ message: 'Implementation pending' })
+    } catch (error) {
+      next(error)
+    }
+  },
+)
+
+// * Refine
+router.get(
+  '/:tripId/activities/:actId/refine',
+  isSignedIn,
+  async (req, res, next) => {
+    try {
+      const { tripId, actId } = req.params
+      const trip = await Trip.findById(tripId)
+      if (!trip) throw new NotFound()
+      if (!trip.owner.equals(req.user._id)) throw new Forbidden()
+      const activity = trip.activities.id(actId)
+      if (!activity) throw new NotFound()
+
+      // here comes the OpenAI integration
+
+      // activity.set(req.body)
+      // await trip.save()
+      // res.status(200).json(activity)
+      res.status(405).json({ message: 'Implementation pending' })
+    } catch (error) {
+      next(error)
+    }
+  },
+)
+
 /* Export ------------------------------------------------------------------ */
 
 export default router
