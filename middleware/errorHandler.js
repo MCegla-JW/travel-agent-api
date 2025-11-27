@@ -70,7 +70,8 @@ const errorHandler = (error, req, res, next) => {
   // logError(message)
   console.error(backendDetails)
   return res.status(backendDetails.status).json({
-    error: frontendMessage
+    frontend: frontendMessage,
+    backend: backendDetails
   })
 
 }
