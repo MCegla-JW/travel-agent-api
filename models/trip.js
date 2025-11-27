@@ -29,13 +29,6 @@ const activitySchema = new mongoose.Schema({
       return sanitizeAndNormalizeUrl(value)
     },
   },
-  imageUrl: {
-    type: String,
-    set: (value) => {
-      if (!value || value === 'null') return undefined
-      return sanitizeAndNormalizeUrl(value)
-    },
-  },
 })
 
 const tripSchema = new mongoose.Schema({
