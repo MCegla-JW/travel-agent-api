@@ -26,13 +26,6 @@ const activitySchema = new mongoose.Schema({
       message: 'End date must be after start date',
     },
   },
-  websiteUrl: {
-    type: String,
-    set: (value) => {
-      if (!value || value === 'null') return undefined
-      return sanitizeAndNormalizeUrl(value)
-    },
-  },
 })
 
 const tripSchema = new mongoose.Schema({
@@ -71,7 +64,6 @@ export const activitySchemaZod = z.object({
   mapUrl: z.string().describe('A valid URL'),
   startDate: z.iso.datetime(),
   endDate: z.iso.datetime(),
-  websiteUrl: z.string().describe('A valid URL'),
 })
 
 export const tripSchemaZod = z.object({
