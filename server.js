@@ -22,6 +22,11 @@ app.use(morgan('dev'))
 app.use('/auth', authController)
 app.use('/trips', tripController)
 
+// * 404 
+app.use((req, res) => {
+  return res.status(404).json({message: 'Route not found'})
+})
+
 // * Handle all errors thrown in the routes
 app.use(errorHandler)
 
@@ -37,6 +42,6 @@ const connect = async (req, res) => {
 
 connect()
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Connection to server established!')
 })
