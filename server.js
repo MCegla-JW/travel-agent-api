@@ -15,7 +15,7 @@ import tripController from './controllers/trip.js'
 
 // Middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors({ origin: process.env.DEPLOYED_FRONTEND_URL || 'http://localhost:5173' }))
 app.use(morgan('dev'))
 
 // * Routes
