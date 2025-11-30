@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/user.js'
-import { Unauthorized, NotFound } from '../utils/erros.js'
+import { Unauthorized, NotFound } from '../utils/errors.js'
 
 const isSignedIn = async (req, res, next) => {
     try {
