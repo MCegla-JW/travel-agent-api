@@ -25,6 +25,7 @@ app.use('/trips', tripController)
 // * 404 
 app.use((req, res) => {
   return res.status(404).json({message: 'Route not found'})
+
 })
 
 // * Handle all errors thrown in the routes
