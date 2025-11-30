@@ -337,4 +337,4 @@ Deployment using Heroku and Vercel.
 - OPENAI_API_KEY=<your-key>
   
 4. Start the development server
-- npm run dev
+- npm start
