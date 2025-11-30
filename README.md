@@ -4,6 +4,8 @@ Description
 
 A full stack single-page application that allows users to plan their dream trips and add activities to each one. If users need inspiration, they can utilise the built-in AI assistant to generate a personalised list of activity ideas. 
 
+This is my third project in my three-month intensive bootcamp at General Assembly.
+
 *This app has two repositories: frontend and backend
 
 Code snippets in this ReadMe are from backend, for frontend, please go here - [Frontend ReadMe](https://github.com/MCegla-JW/travel-agent)
