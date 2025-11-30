@@ -4,7 +4,7 @@ import OpenAI from 'openai'
 import isSignedIn from '../middleware/isSignedIn.js'
 import Trip, { tripSchemaZod } from '../models/trip.js'
 
-import { NotFound, Forbidden } from '../utils/erros.js'
+import { NotFound, Forbidden } from '../utils/errors.js'
 import { zodTextFormat } from 'openai/helpers/zod.mjs'
 
 const router = express.Router()
@@ -202,12 +202,10 @@ router.get(
       const endTime = Date.now()
 
       const newActivities = openAIresponse.output_parsed.activities
-  
 
-      trip.activities = [...trip.activities, ...newActivities]      
+      trip.activities = [...trip.activities, ...newActivities]
 
       await trip.save()
-          
 
       const responseToClient = {
         msecs: endTime - startTime,
