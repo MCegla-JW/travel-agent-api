@@ -330,11 +330,11 @@ Deployment using Heroku and Vercel.
 2. Install dependencies
 - npm install
 
-  3. Create .env file with the following variables:
+3. Create .env file with the following variables:
 - MONGODB_URI=<your-mongodb-connection-string>
 - PORT=3000
 - DEPLOYED_FRONTEND_URL=https://travel-agent-ten-nu.vercel.app
 - OPENAI_API_KEY=<your-key>
   
 4. Start the development server
-5. - npm run dev
+- npm run dev
