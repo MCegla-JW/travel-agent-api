@@ -280,7 +280,10 @@ export default errorHandler
 ```
 
 ## Screenshots
-TBC
+
+| Create Trip | Show All Trips | Update Trip | Delete Trip| Show All AI Generated Activites |
+|---------------------|-------------------|-------------------|-------------------|-------------------|
+| <img src='./screenshots/create-trip.png' alt="Trip Create" width="250"> | <img src='./screenshots/trips.png' alt="Trips" width="250"> | <img src='./screenshots/edit-trip.png' alt="Trip Edit" width="250"> | <img src='./screenshots/edit-and-delete.png' alt="Delete Trip" width="250"> | <img src='./screenshots/activities-list.png' alt="Activities List" width="250">
 
 ## Challenges 
 
