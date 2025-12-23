@@ -102,7 +102,7 @@ The project requirements included:
 - Routing Table: I created the routing table to define the routes required for the single-page application
 - Project Management: I set up the Trello board for task management 
 - Project Set-up: My partner created the GitHub repositories and handled the initial project configuration
-- ESlint - we both installed and configured ESLint to ensure our code followed consistent styling and best practices
+- ESlint: We both installed and configured ESLint to ensure our code followed consistent styling and best practices
 - Task Delegation: We split the tasks so we each got a chance to work on both the front and the back end 
 
 ## Approach taken:
@@ -113,20 +113,13 @@ The project requirements included:
 
 # My Work
 
-## My personal achievements are: 
+## Backend Achievements
 
-- Coming up with the project theme 
-- Created the user Schema (used schema hooks to validate password) 
-- Developed backend login and register routes using JSON Web Token 
-- Implemented authentication on both backend and frontend
-- Set up the homepage on backend and frontend including the marketing content with React Slick carousel
-- Implemented React Slick carousel in the TripIndex file 
-- Created the boilerplate code for both backend (established server and database connections) and frontend to establish project structure 
-- Developed a NotFound component for handling unknown routes
-- Implemented error handling for both frontend and backend
-- Built the NavBar component for the frontend, sourced the logo 
-- Styled the app using Material UI for consistent and responsive design 
-- Created a date conversion service function to handle form inputs and display dates in a user-friendly format on the frontend edit page
+- Created the User schema (with schema hooks for password validation)
+- Developed backend login and register routes using JSON Web Token (JWT)
+- Implemented authentication middleware on the backend to protect routes
+- Set up the boilerplate code for server and database connections
+- Implemented backend error handling to provide clear API responses
 
 # Build/Code Process
 
@@ -313,7 +306,7 @@ Deployment using Heroku and Vercel.
 
 ## Known Bugs
 
-- Not a bug but the AI does take about 20s to generate a response as we are using the cheapest model.
+- Not a bug but the AI does take about 20s to generate a response as we are using the cheapest model. 
 
 ## Future Improvements 
 
@@ -324,19 +317,15 @@ Deployment using Heroku and Vercel.
 - Use toastify for more interesting error messaging on front end 
 - Improve styling on AI feature - add a loading gif/icon as it takes a while to generate results 
 
-## Installation & Setup
+## Installation & Setup (Backend)
 
-1. Clone the repo
--git clone https://github.com/MCegla-JW/travel-agent-api
+| Step | Action |
+|:-----|:------|
+| 1. Clone the repo | `git clone https://github.com/MCegla-JW/travel-agent && cd travel-agent` |
+| 2. Install dependencies | `npm install` |
+| 3. Create a `.env` file in the root directory with the following variables | `PORT=3000` <br> `MONGODB_URI=your_mongodb_atlas_connection_string` <br> `JWT_SECRET=your_jwt_secret` <br> `OPENAI_API_KEY=your_openai_api_key` |
+| 4. Start the development server | `npm run dev` |
 
-2. Install dependencies
-- npm install
+Note: Replace all `your_...` values with your own credentials.  
+Sensitive keys are intentionally not included in the repository.
 
-3. Create .env file with the following variables:
-- MONGODB_URI=<your-mongodb-connection-string>
-- PORT=3000
-- DEPLOYED_FRONTEND_URL=https://travel-agent-ten-nu.vercel.app
-- OPENAI_API_KEY=<your-key>
-  
-4. Start the development server
-- npm start
